@@ -1,6 +1,6 @@
 export const NavBar = () => {
   return (
-    <nav className="w-screen flex justify-center pt-0 sm:pt-8  ">
+    <nav className="w-full flex justify-center pt-0 sm:pt-8  sticky top-0 bg-[#f6f6f6] z-999">
       <div className="flex items-center justify-between w-[100%] sm:w-[90%] md:w-[85%] lg:w-[70%] px-3 sm:px-8 py-4 bg-white shadow-md  sm:rounded-2xl">
         <h1 className="text-[#3278e6] text-2xl font-bold tracking-tight">
           mockMate
