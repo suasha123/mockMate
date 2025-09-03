@@ -1,6 +1,22 @@
 "use client";
+import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
+
 const SignIn = () => {
+  const [userinfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleData = async() => {
+    const res = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userinfo }),
+    });
+    console.log(res);
+  };
+
   return (
     <section className="w-full flex justify-center items-center min-h-screen bg-[#f6f6f6]">
       <div className="w-[90%] sm:w-[400px] bg-white p-8 rounded-2xl shadow-xl">
@@ -8,7 +24,7 @@ const SignIn = () => {
           mockMate
         </h1>
 
-        <h3 className="text-xl font-bold  text-center text-[#595959] mb-6">
+        <h3 className="text-xl font-bold text-center text-[#595959] mb-6">
           Sign In to continue
         </h3>
 
@@ -19,7 +35,14 @@ const SignIn = () => {
           <input
             type="email"
             placeholder="Enter your email"
-            className="w-full px-4 py-2 border  rounded-xl focus:outline-none focus:border-none  border-grey-200 focus:ring-2 focus:ring-blue-500"
+            value={userinfo.email}
+            onChange={(e) =>
+              setUserInfo((prev) => ({
+                ...prev,
+                email: e.target.value,
+              }))
+            }
+            className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:border-none border-gray-200 focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
@@ -30,12 +53,21 @@ const SignIn = () => {
           <input
             type="password"
             placeholder="Enter your password"
-            className="w-full px-4 py-2 border rounded-xl focus:border-none  border-grey-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={userinfo.password}
+            onChange={(e) =>
+              setUserInfo((prev) => ({
+                ...prev,
+                password: e.target.value,
+              }))
+            }
+            className="w-full px-4 py-2 border rounded-xl focus:border-none border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
-      
-        <button className="cursor-pointer w-full bg-blue-600 text-white py-2 rounded-xl font-medium hover:bg-blue-700 transition">
+        <button
+          className="cursor-pointer w-full bg-blue-600 text-white py-2 rounded-xl font-medium hover:bg-blue-700 transition"
+          onClick={handleData}
+        >
           Sign In
         </button>
 
@@ -46,13 +78,16 @@ const SignIn = () => {
         </div>
 
         <button className="cursor-pointer w-full flex items-center justify-center gap-2 border py-2 rounded-xl hover:bg-gray-100 transition">
-             <FcGoogle className="w-6 h-6"/>
+          <FcGoogle className="w-6 h-6" />
           Continue with Google
         </button>
 
         <p className="text-center text-sm text-gray-600 mt-6">
           Don’t have an account?{" "}
-          <a href="/signup" className="text-blue-600 hover:underline cursor:pointer">
+          <a
+            href="/signup"
+            className="text-blue-600 hover:underline cursor-pointer"
+          >
             Sign Up
           </a>
         </p>
