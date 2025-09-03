@@ -6,7 +6,7 @@ import { Feature } from "@/components/Features";
 export default function Home() {
   return (
     <div className="flex flex-col">
-       <NavBar />
+    <NavBar />
        <Hero />
        <Feature />
        <Work />

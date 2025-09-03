@@ -1,7 +1,11 @@
 "use client";
 import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
+import useStore from "@/store/zustand";
+import { useRouter } from "next/navigation";
 const Signup = () => {
+  const router = useRouter();
+  const { isLoggedIn, userdata } = useStore();
   const [userinfo, setUserInfo] = useState({
     email: "",
     password: "",
@@ -13,7 +17,12 @@ const Signup = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userinfo }),
     });
-    console.log(res);
+    if (res.ok) {
+          const data = await res.json();
+          const setdata = useStore.getState().setuserdata;
+          setdata(data.userInfo);
+          router.replace("/");
+        }
   };
 
   return (

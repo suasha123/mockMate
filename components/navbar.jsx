@@ -1,9 +1,11 @@
 "use client";
 
+import useStore from "@/store/zustand";
 import { useRouter } from "next/navigation";
-
-export const NavBar = () => {
+export const NavBar = ({ user }) => {
   const router = useRouter();
+  const { isLoggedIn, userdata } = useStore();
+  console.log(userdata);
   const gotSignIn = () => {
     router.push("/signin");
   };
@@ -39,12 +41,16 @@ export const NavBar = () => {
             </a>
           </li>
         </ul>
-        <button
-          className="cursor-pointer active:bg-[#3b82f6] px-5 py-2 rounded-xl bg-[#2b2c43] text-white text-[13px] md:text-[16px] shadow hover:bg-[#2563eb] transition-all duration-200 ease-in"
-          onClick={gotSignIn}
-        >
-          Sign In
-        </button>
+        {isLoggedIn ? (
+          userdata.username
+        ) : (
+          <button
+            className="cursor-pointer active:bg-[#3b82f6] px-5 py-2 rounded-xl bg-[#2b2c43] text-white text-[13px] md:text-[16px] shadow hover:bg-[#2563eb] transition-all duration-200 ease-in"
+            onClick={gotSignIn}
+          >
+            Sign In
+          </button>
+        )}
       </div>
     </nav>
   );

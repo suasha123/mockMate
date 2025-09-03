@@ -1,20 +1,27 @@
 "use client";
+import useStore from "@/store/zustand";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-
 const SignIn = () => {
+  const router = useRouter();
   const [userinfo, setUserInfo] = useState({
     email: "",
     password: "",
   });
 
-  const handleData = async() => {
+  const handleData = async () => {
     const res = await fetch("/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userinfo }),
     });
-    console.log(res);
+    if (res.ok) {
+      const data = await res.json();
+      const setdata = useStore.getState().setuserdata;
+      setdata(data.userInfo);
+      router.replace("/");
+    }
   };
 
   return (
@@ -63,7 +70,6 @@ const SignIn = () => {
             className="w-full px-4 py-2 border rounded-xl focus:border-none border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-
         <button
           className="cursor-pointer w-full bg-blue-600 text-white py-2 rounded-xl font-medium hover:bg-blue-700 transition"
           onClick={handleData}
