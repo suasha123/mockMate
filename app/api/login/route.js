@@ -26,7 +26,7 @@ export async function POST(req) {
   const session = await getIronSession(cookieStore, sessionoptions);
   session.user = { id: userexists._id };
   await session.save();
-  const userInfo = {username : userexists.username , email : userexists.email};
+  const userInfo = {username : userexists.username , email : userexists.email , profile : userexists.profile};
   return new Response(JSON.stringify({ msg: "Login successful" , userInfo }), {
     status: 200,
     headers: { "Content-Type": "application/json" },

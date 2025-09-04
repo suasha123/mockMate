@@ -13,7 +13,7 @@ export async function GET(req) {
   } else {
     await connectDb();
     const user = await usermodel.findById(session.user.id);
-    const userInfo = { username: user.username, email: user.email };
+    const userInfo = { username: user.username, email: user.email , profile : user.profile };
     return new Response(JSON.stringify({ msg: "User loggedIn", userInfo }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
