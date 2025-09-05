@@ -34,6 +34,10 @@ export async function GET(req) {
   if (ifuserExists) {
     session.user = { id: ifuserExists._id };
   } else {
+    const ifmanualexits = await usermodel.findOne({email : profile.email});
+    if(ifmanualexits){
+      return  Response.redirect(new URL("/signin?error=email_registered", req.url));
+    }
     newuser = await usermodel.create({
       email: profile.email,
       username: profile.email.split("@")[0],

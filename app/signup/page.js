@@ -5,8 +5,8 @@ import useStore from "@/store/zustand";
 import { useRouter } from "next/navigation";
 const Signup = () => {
   const router = useRouter();
-  const { isLoggedIn} = useStore();
-  const [d , setD] = useState(false);
+  const { isLoggedIn } = useStore();
+  const [d, setD] = useState(false);
   const [userinfo, setUserInfo] = useState({
     email: "",
     password: "",
@@ -23,15 +23,15 @@ const Signup = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: userinfo.email }),
       });
-      if(res.ok){
-          console.log("otp sent");
+      if (res.ok) {
+        console.log("otp sent");
       }
     } catch (err) {
       console.log(err);
     }
   };
   const handleData = async () => {
-    if(!userinfo.email || !userinfo.password || !userinfo.otp){
+    if (!userinfo.email || !userinfo.password || !userinfo.otp) {
       return;
     }
     const res = await fetch("/api/signup", {
@@ -51,16 +51,14 @@ const Signup = () => {
       router.replace("/");
     }
   }, [isLoggedIn, router]);
-  if (isLoggedIn) {
-    return null;
-  }
-  if (isLoggedIn === null) {
+  if (isLoggedIn === true || isLoggedIn === null) {
     return (
-      <section className="w-full min-h-screen flex justify-center items-center">
-        <p>Loading...</p>
-      </section>
+      <div className="flex justify-center items-center min-h-screen bg-[#f6f6f6]">
+        <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
     );
   }
+
   return (
     <section className="w-full flex justify-center items-center min-h-screen bg-[#f6f6f6]">
       <div className="w-[90%] sm:w-[400px] bg-white p-8 rounded-2xl shadow-xl">

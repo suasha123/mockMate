@@ -39,26 +39,41 @@ export const NavBar = () => {
 
         <ul className="hidden sm:flex sm:gap-8 text-gray-600 sm:block text-[13px] md:text-[16px]">
           <li>
-            <a href="/" className="hover:text-[#3278e6] transition-colors">
-              Home
-            </a>
+            {isLoggedIn === null ? (
+              <span className="inline-block bg-gray-300 rounded w-12 h-[24px] animate-pulse"></span>
+            ) : (
+              <a href="/" className="hover:text-[#3278e6] transition-colors">
+                Home
+              </a>
+            )}
           </li>
           <li>
-            <a
-              href="/dashboard"
-              className="hover:text-[#3278e6] transition-colors"
-            >
-              Dashboard
-            </a>
+            {isLoggedIn === null ? (
+              <span className="inline-block bg-gray-300 rounded w-15 h-[24px] animate-pulse"></span>
+            ) : (
+              <a
+                href="/dashboard"
+                className="hover:text-[#3278e6] transition-colors"
+              >
+                Dashboard
+              </a>
+            )}
           </li>
           <li>
-            <a href="/about" className="hover:text-[#3278e6] transition-colors">
-              About
-            </a>
+            {isLoggedIn === null ? (
+              <span className="inline-block bg-gray-300 rounded w-15 h-[24px] animate-pulse"></span>
+            ) : (
+              <a
+                href="/about"
+                className="hover:text-[#3278e6] transition-colors"
+              >
+                About
+              </a>
+            )}
           </li>
         </ul>
 
-        {isLoggedIn ? (
+        {isLoggedIn===null  ? (<span className="inline-block bg-gray-300 rounded w-[40px] h-[40px] rounded-full animate-pulse"></span>) : isLoggedIn ?  (
           <div className="relative" ref={dropdownRef}>
             <div
               className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 text-white font-bold text-lg cursor-pointer shadow hover:scale-105 transition-transform"

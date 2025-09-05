@@ -22,6 +22,10 @@ export async function POST(req) {
       headers: { "Content-Type": "application/json" },
     });
   }
+  const isgoogleuser = userexists.googleId;
+  if(isgoogleuser){
+    return new Response(JSON.stringify({ msg: "Login with google" }), { status: 400 });
+  }
   const isPcorrect = await argon2.verify(userexists.password , userinfo.password);
   if(!isPcorrect){
      return new Response(JSON.stringify({ msg: "Wrong Password" }), { status: 400 });

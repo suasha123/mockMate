@@ -1,11 +1,12 @@
 "use client";
 import useStore from "@/store/zustand";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 const SignIn = () => {
   const { isLoggedIn } = useStore();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [userinfo, setUserInfo] = useState({
     email: "",
     password: "",
@@ -29,14 +30,20 @@ const SignIn = () => {
       router.replace("/");
     }
   }, [router, isLoggedIn]);
-  if (isLoggedIn) {
-    return null;
-  }
-  if (isLoggedIn === null) {
+
+
+  useEffect(() => {
+    const error = searchParams.get("error");
+    if (error === "email_registered") {
+       window.alert("This email is already registered. Please login normally.");
+    }
+  }, [searchParams]);
+
+  if (isLoggedIn === null || isLoggedIn) {
     return (
-      <section className="w-full min-h-screen flex justify-center items-center">
-        <p>Loading...</p>
-      </section>
+      <div className="flex justify-center items-center min-h-screen bg-[#f6f6f6]">
+        <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
     );
   }
   return (
@@ -98,7 +105,10 @@ const SignIn = () => {
           <hr className="flex-grow border-gray-300" />
         </div>
 
-        <button onClick={() => (window.location.href = "/api/auth/google")} className="cursor-pointer w-full flex items-center justify-center gap-2 border py-2 rounded-xl hover:bg-gray-100 transition">
+        <button
+          onClick={() => (window.location.href = "/api/auth/google")}
+          className="cursor-pointer w-full flex items-center justify-center gap-2 border py-2 rounded-xl hover:bg-gray-100 transition"
+        >
           <FcGoogle className="w-6 h-6" />
           Continue with Google
         </button>
