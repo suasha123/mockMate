@@ -43,13 +43,21 @@ const AccountInfo = () => {
     }
   };
   useEffect(() => {
-    if (!isLoggedIn) {
-      router.replace("/"); 
+    if (isLoggedIn===false) {
+      router.replace("/");
     }
   }, [isLoggedIn, router]);
 
-  if(!isLoggedIn){
+  if (isLoggedIn===false) {
     return null;
+  }
+
+  if (isLoggedIn === null) {
+    return (
+      <section className="w-full min-h-screen flex justify-center items-center">
+        <p>Loading...</p>
+      </section>
+    );
   }
 
   return (

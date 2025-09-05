@@ -1,9 +1,10 @@
 "use client";
 import useStore from "@/store/zustand";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 const SignIn = () => {
+  const { isLoggedIn } = useStore();
   const router = useRouter();
   const [userinfo, setUserInfo] = useState({
     email: "",
@@ -23,7 +24,21 @@ const SignIn = () => {
       router.replace("/");
     }
   };
-
+  useEffect(() => {
+    if (isLoggedIn) {
+      router.replace("/");
+    }
+  }, [router, isLoggedIn]);
+  if (isLoggedIn) {
+    return null;
+  }
+  if (isLoggedIn === null) {
+    return (
+      <section className="w-full min-h-screen flex justify-center items-center">
+        <p>Loading...</p>
+      </section>
+    );
+  }
   return (
     <section className="w-full flex justify-center items-center min-h-screen bg-[#f6f6f6]">
       <div className="w-[90%] sm:w-[400px] bg-white p-8 rounded-2xl shadow-xl">
@@ -83,7 +98,7 @@ const SignIn = () => {
           <hr className="flex-grow border-gray-300" />
         </div>
 
-        <button className="cursor-pointer w-full flex items-center justify-center gap-2 border py-2 rounded-xl hover:bg-gray-100 transition">
+        <button onClick={() => (window.location.href = "/api/auth/google")} className="cursor-pointer w-full flex items-center justify-center gap-2 border py-2 rounded-xl hover:bg-gray-100 transition">
           <FcGoogle className="w-6 h-6" />
           Continue with Google
         </button>

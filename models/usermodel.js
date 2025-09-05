@@ -8,7 +8,6 @@ const userSchema = new mongoose.Schema({
     },
     password : {
         type : String,
-        required : true,
     },
     profile : {
         type : String,
@@ -16,6 +15,10 @@ const userSchema = new mongoose.Schema({
     username : {
         type : String,
         required : true,
+    },
+    googleId : {
+        type : String,
+        unique : true,
     }
 })
 
