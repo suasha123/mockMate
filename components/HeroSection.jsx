@@ -1,6 +1,7 @@
-
-
+"use client";
+import { useRouter } from "next/navigation";
 export const Hero = () => {
+  const router = useRouter();
   return (
     <section className="w-full flex justify-center mt-10 md:mt-20">
       <div className="w-[90%] border border-[#3278e6] md:w-[85%] lg:w-[70%] bg-[#f3f6fc] rounded-2xl shadow-md flex flex-col md:flex-row items-center px-8 py-12 gap-10">
@@ -16,7 +17,7 @@ export const Hero = () => {
           </p>
 
           <div className="flex  md:flex-row flex-col justify-start  gap-4 pt-4">
-            <button className="px-2 py-3 lg:px-4 md:text-[14px] rounded-xl bg-[#3278e6] text-white font-medium shadow hover:bg-[#2563eb] active:scale-95 transition-all duration-300 ease-in-out cursor-pointer">
+            <button onClick={()=>router.push("/interview")} className="px-2 py-3 lg:px-4 md:text-[14px] rounded-xl bg-[#3278e6] text-white font-medium shadow hover:bg-[#2563eb] active:scale-95 transition-all duration-300 ease-in-out cursor-pointer">
                Start Interview
             </button>
             <button className="px-2 py-3 lg:px-4  md:text-[14px]  rounded-xl bg-white border border-gray-200 text-[#2b2c43] font-medium shadow hover:border-[#3278e6] active:scale-95 transition-all duration-300 ease-in-out cursor-pointer">

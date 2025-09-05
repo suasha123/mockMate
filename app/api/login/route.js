@@ -4,6 +4,7 @@ import connectDb from "@/lib/connectdb";
 import usermodel from "@/models/usermodel";
 import { sessionoptions } from "@/lib/session";
 import argon2 from "argon2";
+import { useReducer } from "react";
 export async function POST(req) {
   await connectDb();
   const { userinfo } = await req.json();
@@ -38,6 +39,8 @@ export async function POST(req) {
     username: userexists.username,
     email: userexists.email,
     profile: userexists.profile,
+    completed : userexists.completed,
+    avg : userexists.avg
   };
   return new Response(JSON.stringify({ msg: "Login successful", userInfo }), {
     status: 200,

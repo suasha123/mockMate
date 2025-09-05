@@ -19,6 +19,14 @@ const userSchema = new mongoose.Schema({
     googleId : {
         type : String,
         unique : true,
+    },
+    completed:{
+        type : Number,
+        default : 0
+    },
+    avg : {
+        type : Number,
+        default : 0
     }
 })
 

@@ -12,6 +12,7 @@
     "argon2": "^0.44.0",
     "cloudinary": "^1.41.3",
     "iron-session": "^8.0.4",
+    "lucide-react": "^0.542.0",
     "mongoose": "^8.18.0",
     "multer": "^2.0.2",
     "multer-storage-cloudinary": "^4.0.0",
