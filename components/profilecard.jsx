@@ -9,13 +9,19 @@ export const ProfileCard = ({ setShowProfile }) => {
     if (!name) return "";
     return name[0].toUpperCase();
   };
-  const handleLogout = () => {
-    console.log("Logged out");
-    router.push("/signin");
+  const handleLogout = async () => {
+    try {
+      const res = await fetch("api/signout");
+      if (res.ok) {
+        window.location.href = "/";
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
-    <div className="absolute right-0 mt-3 w-72 bg-white rounded-2xl shadow-xl border border-gray-400 p-5">
+    <div className="absolute right-0 mt-3 w-72 bg-white rounded-2xl shadow-xl border border-gray-400 p-3">
       <div className="flex items-center gap-4">
         {userdata?.profile ? (
           <img
@@ -24,7 +30,7 @@ export const ProfileCard = ({ setShowProfile }) => {
             className="w-10 h-10 rounded-full object-cover"
           />
         ) : (
-          <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-lg font-semibold">
             {getAvatarLetter(userdata?.username)}
           </div>
         )}

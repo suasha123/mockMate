@@ -5,13 +5,35 @@ import useStore from "@/store/zustand";
 import { useRouter } from "next/navigation";
 const Signup = () => {
   const router = useRouter();
-  const { isLoggedIn, userdata } = useStore();
+  const { isLoggedIn} = useStore();
+  const [d , setD] = useState(false);
   const [userinfo, setUserInfo] = useState({
     email: "",
     password: "",
+    otp: "",
   });
-
+  const handleotp = async () => {
+    if (!userinfo.email) {
+      console.log("Email required");
+      return;
+    }
+    try {
+      const res = await fetch("/api/otp-verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: userinfo.email }),
+      });
+      if(res.ok){
+          console.log("otp sent");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const handleData = async () => {
+    if(!userinfo.email || !userinfo.password || !userinfo.otp){
+      return;
+    }
     const res = await fetch("/api/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -86,6 +108,30 @@ const Signup = () => {
           />
         </div>
 
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            OTP
+          </label>
+          <input
+            type="password"
+            value={userinfo.otp}
+            onChange={(e) =>
+              setUserInfo((prev) => ({
+                ...prev,
+                otp: e.target.value,
+              }))
+            }
+            placeholder="Enter the otp"
+            className="w-full px-4 py-2 border rounded-xl focus:border-none  border-grey-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <div
+            onClick={handleotp}
+            className="text-red-500 mt-2 active:text-red-600"
+          >
+            Verify Email ?
+          </div>
+        </div>
+
         <button
           onClick={handleData}
           className="cursor-pointer w-full bg-blue-600 text-white py-2 rounded-xl font-medium hover:bg-blue-700 transition"
@@ -99,7 +145,10 @@ const Signup = () => {
           <hr className="flex-grow border-gray-300" />
         </div>
 
-        <button onClick={() => (window.location.href = "/api/auth/google")} className="cursor-pointer w-full flex items-center justify-center gap-2 border py-2 rounded-xl hover:bg-gray-100 transition">
+        <button
+          onClick={() => (window.location.href = "/api/auth/google")}
+          className="cursor-pointer w-full flex items-center justify-center gap-2 border py-2 rounded-xl hover:bg-gray-100 transition"
+        >
           <FcGoogle className="w-6 h-6" />
           Continue with Google
         </button>

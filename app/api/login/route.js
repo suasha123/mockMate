@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import connectDb from "@/lib/connectdb";
 import usermodel from "@/models/usermodel";
 import { sessionoptions } from "@/lib/session";
-
+import argon2 from "argon2";
 export async function POST(req) {
   await connectDb();
   const { userinfo } = await req.json();
@@ -22,12 +22,20 @@ export async function POST(req) {
       headers: { "Content-Type": "application/json" },
     });
   }
-   const cookieStore = await cookies();
+  const isPcorrect = await argon2.verify(userexists.password , userinfo.password);
+  if(!isPcorrect){
+     return new Response(JSON.stringify({ msg: "Wrong Password" }), { status: 400 });
+  }
+  const cookieStore = await cookies();
   const session = await getIronSession(cookieStore, sessionoptions);
   session.user = { id: userexists._id };
   await session.save();
-  const userInfo = {username : userexists.username , email : userexists.email , profile : userexists.profile};
-  return new Response(JSON.stringify({ msg: "Login successful" , userInfo }), {
+  const userInfo = {
+    username: userexists.username,
+    email: userexists.email,
+    profile: userexists.profile,
+  };
+  return new Response(JSON.stringify({ msg: "Login successful", userInfo }), {
     status: 200,
     headers: { "Content-Type": "application/json" },
   });
