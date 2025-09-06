@@ -4,7 +4,6 @@ import connectDb from "@/lib/connectdb";
 import usermodel from "@/models/usermodel";
 import { sessionoptions } from "@/lib/session";
 import argon2 from "argon2";
-import { useReducer } from "react";
 export async function POST(req) {
   await connectDb();
   const { userinfo } = await req.json();
