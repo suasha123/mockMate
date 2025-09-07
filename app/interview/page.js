@@ -35,7 +35,8 @@ const StartInterviewPage = () => {
         body: JSON.stringify({ ivinfo }),
       });
       if (response.ok) {
-        console.log(response);
+        const {id} = await response.json();
+        router.replace(`/ivroom?roomid=${id}`);
       } else {
         console.log("error");
       }
@@ -47,7 +48,7 @@ const StartInterviewPage = () => {
     if (isLoggedIn === false) {
       router.replace("/signin");
     } else if (isLoggedIn === true && userdata?.roomid) {
-      router.replace("/ivroom");
+      router.replace(`/ivroom?roomid=${userdata?.roomid}`);
     } else {
       setLoading(false);
     }
@@ -70,17 +71,17 @@ const StartInterviewPage = () => {
                 </div>
                 <div>
                   <h2 className="text-xl font-semibold text-gray-800">
-                    {userdata.username}
+                    {userdata?.username}
                   </h2>
-                  <p className="text-gray-500 text-sm">{userdata.email}</p>
+                  <p className="text-gray-500 text-sm">{userdata?.email}</p>
                   <div className="flex gap-6 mt-2 text-sm text-gray-600">
                     <span className="flex items-center justify-center gap-2">
                       <IoBarChartSharp size={20} className="text-green-500" />
-                      Completed: {userdata.completed || 0}
+                      Completed: {userdata?.completed || 0}
                     </span>
                     <span className="flex items-center justify-center gap-2 ">
                       <FaStar size={20} className="text-yellow-500" /> Avg
-                      Score: {userdata.avg || 0} %
+                      Score: {userdata?.avg || 0} %
                     </span>
                   </div>
                 </div>
