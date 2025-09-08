@@ -51,7 +51,7 @@ export const Work = () => {
                 {step.title}
               </h2>
               <p className="text-gray-600 mt-2 text-sm leading-relaxed">
-                {step.desccc}
+                {step.desc}
               </p>
             </div>
           ))}
