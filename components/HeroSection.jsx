@@ -18,7 +18,7 @@ export const Hero = () => {
 
           <div className="flex  md:flex-row flex-col justify-start  gap-4 pt-4">
             <button
-              onClick={() => router.push("/interview")}
+              onClick={() => router.push("/connectaccount")}
               className="px-2 py-3 lg:px-4 md:text-[14px] rounded-xl bg-[#3278e6] text-white font-medium shadow hover:bg-[#2563eb] active:scale-95 transition-all duration-300 ease-in-out cursor-pointer"
             >
               Get Started
