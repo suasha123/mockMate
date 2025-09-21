@@ -1,7 +1,6 @@
 import { CgProfile } from "react-icons/cg";
-import { FaMicrophone } from "react-icons/fa";
 import { FaCheckCircle } from "react-icons/fa";
-
+import { SiGooglegemini } from "react-icons/si";
 export const Work = () => {
   const steps = [
     {
@@ -11,14 +10,14 @@ export const Work = () => {
       color: "#50337c",
     },
     {
-      title: "Practice",
-      desc: "Start mock interviews with real-time AI coaching.",
-      icon: <FaMicrophone />,
+      title: "Generate & Customize Content",
+      desc: "AI creates draft posts — you review, edit, and approve with ease.",
+      icon: <SiGooglegemini />,
       color: "#aca3b1",
     },
     {
-      title: "Get Feedback",
-      desc: "Receive instant, actionable feedback to improve.",
+      title: "Schedule & Auto-Publish",
+      desc: "Pick dates, schedule posts, and let PostCraft publish automatically.",
       icon: <FaCheckCircle />,
       color: "#57d28c",
     },
