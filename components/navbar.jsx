@@ -31,10 +31,10 @@ export const NavBar = () => {
   }, []);
 
   return (
-    <nav className="w-full flex justify-center pt-0 sm:pt-8 sticky top-0 bg-[#f6f6f6] z-50">
+    <nav className="w-full flex justify-center pt-0 sm:pt-3 sticky top-0 bg-[#f6f6f6] z-50">
       <div className="flex items-center justify-between w-[100%] sm:w-[90%] md:w-[85%] lg:w-[70%] px-3 sm:px-8 py-4 bg-white shadow-md sm:rounded-2xl relative">
         <h1 className="text-[#3278e6] text-2xl font-bold tracking-tight">
-          postCraft
+          SecureVault
         </h1>
 
         <ul className="hidden sm:flex sm:gap-8 text-gray-600 sm:block text-[13px] md:text-[16px]">
@@ -47,27 +47,16 @@ export const NavBar = () => {
               </a>
             )}
           </li>
+        
           <li>
             {isLoggedIn === null ? (
               <span className="inline-block bg-gray-300 rounded w-15 h-[24px] animate-pulse"></span>
             ) : (
               <a
-                href="/dashboard"
+                href="/vault"
                 className="hover:text-[#3278e6] transition-colors"
               >
-                Dashboard
-              </a>
-            )}
-          </li>
-          <li>
-            {isLoggedIn === null ? (
-              <span className="inline-block bg-gray-300 rounded w-15 h-[24px] animate-pulse"></span>
-            ) : (
-              <a
-                href="/about"
-                className="hover:text-[#3278e6] transition-colors"
-              >
-                About
+               My Vault
               </a>
             )}
           </li>

@@ -11,11 +11,12 @@ export const ProfileCard = ({ setShowProfile }) => {
   };
   const handleLogout = async () => {
     try {
-      const res = await fetch("api/signout");
+      const res = await fetch("/api/signout");
       if (res.ok) {
         window.location.href = "/";
       }
     } catch (err) {
+      console.log('Error occurred')
       console.log(err);
     }
   };

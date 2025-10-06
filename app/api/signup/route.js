@@ -50,8 +50,6 @@ export async function POST(req) {
       username: newuser.username,
       email: newuser.email,
       profile: newuser.profile,
-      completed: newuser.completed,
-      avg: newuser.avg,
     };
 
     return new Response(JSON.stringify({ success: true, userInfo }), {

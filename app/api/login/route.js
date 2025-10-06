@@ -38,8 +38,6 @@ export async function POST(req) {
     username: userexists.username,
     email: userexists.email,
     profile: userexists.profile,
-    completed : userexists.completed,
-    avg : userexists.avg
   };
   return new Response(JSON.stringify({ msg: "Login successful", userInfo }), {
     status: 200,
