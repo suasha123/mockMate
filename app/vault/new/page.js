@@ -5,7 +5,7 @@ import { NavBar } from "@/components/navbar";
 import useStore from "@/store/zustand";
 import CryptoJS from "crypto-js";
 
-const SECRET_KEY = "vault-secret-key"; 
+const SECRET_KEY = process.env.ENCRYPTKEY; 
 
 export default function AddNewEntry() {
   const router = useRouter();
