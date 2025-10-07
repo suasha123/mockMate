@@ -10,7 +10,7 @@
 ---
 
 ## 📂 Repository
-[SafeVault GitHub Repo](YOUR_REPO_LINK)
+[SafeVault GitHub Repo](https://github.com/suasha123/safeVault)
 
 ---
 
@@ -24,26 +24,24 @@
 ---
 
 ## ⚡ How to Run
-1. Clone the repository:  
-   ```bash
-   git clone <YOUR_REPO_LINK>
-Install dependencies:
 
-bash
-Copy code
+1. **Clone the repository:**  
+   ```
+   git clone https://github.com/suasha123/safeVault.git
+2.**Install dependencies:**
+
+```
 npm install
-Set your secret key in .env:
-
-env
-Copy code
+```
+3.***Set your secret key in .env:***
+```
 ENCRYPTKEY=your-secret-key
-Start the project:
-
-bash
-Copy code
+```
+4.***Start the project:***
+```
 npm run dev
-Open in your browser at:
-
-arduino
-Copy code
+```
+5.***Open in your browser at:***
+```
 http://localhost:3000
+```
