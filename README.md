@@ -3,7 +3,10 @@
 **A secure password and secret manager with encryption.**
 
 ---
+🔑 Crypto Used
 
+CryptoJS (AES encryption)
+Chosen for strong symmetric encryption and ease of integration with JavaScript.
 ## 🌐 Live Demo
 [Click here to access the live demo](YOUR_LIVE_DEMO_URL)
 
