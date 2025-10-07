@@ -1,4 +1,6 @@
 # SafeVault 🔒
+  *** hosted on vecel***
+     [Click here](https://safe-vault-li5g.vercel.app/)
 
 **A secure password and secret manager with encryption.**
 
