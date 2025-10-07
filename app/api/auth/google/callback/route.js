@@ -15,7 +15,7 @@ export async function GET(req) {
       code,
       client_id: process.env.CLIENT_ID,
       client_secret: process.env.CLIENT_SECRET,
-      redirect_uri: "http://localhost:3000/api/auth/google/callback",
+      redirect_uri: "https://safe-vault-li5g.vercel.app/api/auth/google/callback",
       grant_type: "authorization_code",
     }),
   });
