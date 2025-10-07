@@ -63,7 +63,7 @@ const Signup = () => {
     <section className="w-full flex justify-center items-center min-h-screen bg-[#f6f6f6]">
       <div className="w-[90%] sm:w-[400px] bg-white p-8 rounded-2xl shadow-xl">
         <h1 className="text-[#3278e6] text-center text-2xl font-bold tracking-tight mb-5">
-          mockMate
+          safeVault
         </h1>
 
         <h3 className="text-xl font-bold  text-center text-[#595959] mb-6">

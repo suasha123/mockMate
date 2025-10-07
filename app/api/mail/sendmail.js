@@ -1,7 +1,7 @@
 import transporter from "@/lib/mailconfig";
 async function sendmail(email , otp) {
     const mailOptions = {
-    from: '"mockMate OTP" <suryaprataps471@gmail.com>',
+    from: '"safeVault OTP" <suryaprataps471@gmail.com>',
     to: email,
     subject: "Verify your account",
     html: `
@@ -13,7 +13,7 @@ async function sendmail(email , otp) {
         text-align: center;
         border-radius: 10px;
       ">
-        <h2 style="margin-bottom: 20px;">Welcome to mockMate!</h2>
+        <h2 style="margin-bottom: 20px;">Welcome to safeVault!</h2>
         <p style="font-size: 18px;">Your One Time Password (OTP) is:</p>
         <h1 style="font-size: 48px; color : white; letter-spacing: 5px;">${otp}</h1>
         <p style="margin-top: 20px;">Please use this to verify your email.</p>

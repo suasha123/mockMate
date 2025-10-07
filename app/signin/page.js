@@ -1,9 +1,10 @@
 "use client";
+import { Suspense, useEffect, useState } from "react";
 import useStore from "@/store/zustand";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-const SignIn = () => {
+
+function SignInContent() {
   const { isLoggedIn } = useStore();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -25,17 +26,17 @@ const SignIn = () => {
       router.replace("/");
     }
   };
+
   useEffect(() => {
     if (isLoggedIn) {
       router.replace("/");
     }
   }, [router, isLoggedIn]);
 
-
   useEffect(() => {
     const error = searchParams.get("error");
     if (error === "email_registered") {
-       window.alert("This email is already registered. Please login normally.");
+      window.alert("This email is already registered. Please login normally.");
     }
   }, [searchParams]);
 
@@ -46,11 +47,12 @@ const SignIn = () => {
       </div>
     );
   }
+
   return (
     <section className="w-full flex justify-center items-center min-h-screen bg-[#f6f6f6]">
       <div className="w-[90%] sm:w-[400px] bg-white p-8 rounded-2xl shadow-xl">
         <h1 className="text-[#3278e6] text-center text-2xl font-bold tracking-tight mb-5">
-          mockMate
+          safeVault
         </h1>
 
         <h3 className="text-xl font-bold text-center text-[#595959] mb-6">
@@ -66,10 +68,7 @@ const SignIn = () => {
             placeholder="Enter your email"
             value={userinfo.email}
             onChange={(e) =>
-              setUserInfo((prev) => ({
-                ...prev,
-                email: e.target.value,
-              }))
+              setUserInfo((prev) => ({ ...prev, email: e.target.value }))
             }
             className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:border-none border-gray-200 focus:ring-2 focus:ring-blue-500"
           />
@@ -84,14 +83,12 @@ const SignIn = () => {
             placeholder="Enter your password"
             value={userinfo.password}
             onChange={(e) =>
-              setUserInfo((prev) => ({
-                ...prev,
-                password: e.target.value,
-              }))
+              setUserInfo((prev) => ({ ...prev, password: e.target.value }))
             }
             className="w-full px-4 py-2 border rounded-xl focus:border-none border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
+
         <button
           className="cursor-pointer w-full bg-blue-600 text-white py-2 rounded-xl font-medium hover:bg-blue-700 transition"
           onClick={handleData}
@@ -125,6 +122,12 @@ const SignIn = () => {
       </div>
     </section>
   );
-};
+}
 
-export default SignIn;
+export default function SignIn() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SignInContent />
+    </Suspense>
+  );
+}
