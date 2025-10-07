@@ -5,8 +5,8 @@ import { NavBar } from "@/components/navbar";
 import useStore from "@/store/zustand";
 import CryptoJS from "crypto-js";
 
-const SECRET_KEY = process.env.ENCRYPTKEY; 
-
+const SECRET_KEY = process.env.NEXT_PUBLIC_ENCRYPTKEY;
+console.log(SECRET_KEY)
 export default function AddNewEntry() {
   const router = useRouter();
   const { isLoggedIn } = useStore();

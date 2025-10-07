@@ -6,7 +6,7 @@ import { NavBar } from "@/components/navbar";
 import useStore from "@/store/zustand";
 import CryptoJS from "crypto-js";
 import { Eye, Copy } from "lucide-react";
-const SECRET_KEY = process.env.ENCRYPTKEY; 
+const SECRET_KEY = process.env.NEXT_PUBLIC_ENCRYPTKEY;
 
 export default function VaultPage() {
   const router = useRouter();
